@@ -1,33 +1,35 @@
-# Tihar gift page for Prajna — v6
+# Tihar gift page for Prajna — v13
 
-Upload the WHOLE folder — `index.html` + `images/` — no build step, no external files needed.
-Sound is made in the browser (Web Audio), so it works on GitHub Pages with no audio files.
+A single `index.html` — photos are embedded in the file, music streams from Archive.org. No build step.
 
-## Changes in v5 (2026-11-09, your feedback)
-- Malshree Dhun is now the real song recording from YouTube, not the synthesized piano-like version.
+## Music — v13 (2026-11-09, your feedback)
+- **Deusi Bhailo Instrumental** — the Tihar song, not Malshree Dhun (that was a Dashain song).
+- Flute / guitar / madal, 4:14, from Archive.org (`DeusiBhailoInstrumental_201710`), plain MP3, no ads, no YouTube.
+- Plays softly in the background throughout, starting on the first tap (volume 0.12, ducks to 0.02 on firework booms). The sound toggle pauses/resumes it.
+
+## Changes in v12 (phone fix, 2026-11-09)
+- Fixed taps doing nothing on phone: the audio element was after the script and crashed it before any tap handler was attached. Audio now sits before the script, with null guards, and tapping anywhere on the envelope scene opens it.
+
+## Changes in v10 (2026-11-09)
+- YouTube removed entirely — the ads came from the YouTube embed. Music is now a plain MP3 from Archive.org.
 
 ## Changes in v4 (2026-11-09, your feedback)
 - Says **Happy Tihar**, not Happy Diwali — in Nepal we say Tihar. Name is **Prajna** (no Devanagari, no "Prajnaa").
 - No Instagram links anywhere, and no Instagram handle.
 - Only **two photos**: Dashain and the close-up smile.
-- **Malshree Dhun** plays softly in the background throughout, starting on the first tap — the real song recording ("1 Hour Nonstop Dashain Dhun | Malshree Dhun 2026", traditional Nepali instrumental on YouTube, played quietly at volume 12), NOT a piano/synth version. The sound toggle pauses/resumes it.
 
 ## The journey — one screen leads to the next, like the original link
-1. **Envelope** — "For Prajna" — tap 💌 to open, with a chime
+1. **Envelope** — "For Prajna" — tap anywhere to open, with a chime
 2. **Lights** — tap each diya to light it (Joy / Peace / Love / Luck / Hope), with pop sounds. Light all 5 and the string lights turn on, the rangoli is revealed, then Next unlocks
 3. **Fireworks** — tap the sky for fireworks, with boom + crackle sounds. Big launch button too
 4. **Her moments** — a photo slideshow of just two photos: Dashain, and her close-up smile
 5. **Gift card** — "Happy Tihar, Prajna" message, unsigned, with a replay button. Particle text "Happy Tihar / for Prajna" forms in sparkling dots.
 
-Sound toggle top-right (also turns the Malshree Dhun on/off). Mobile-friendly — she'll most likely open it on her phone.
+Sound toggle top-right (also turns the Deusi Bhailo on/off). Mobile-friendly — she'll most likely open it on her phone.
 
-## To host on GitHub Pages (free, ~2 minutes)
-1. GitHub → New repository, e.g. `diwali-for-prajnaa` (Public)
-2. Upload the WHOLE folder: `index.html` AND the `images/` folder
-3. Settings → Pages → Source: Deploy from a branch → Branch: `main`, folder `/ (root)` → Save
-4. Wait ~1 minute. Your link will be `https://<your-github-username>.github.io/diwali-for-prajnaa/`
-
-Note: the GitHub link shows your username in the URL. For a link that doesn't, host the same folder on Netlify or Vercel instead — e.g. `happy-tihar-prajna.netlify.app` — or use a custom domain.
+## Hosting
+GitHub Pages, repo `bscjusi/diwali-for-prajnaa`, branch `main` / root.
+Link: https://bscjusi.github.io/diwali-for-prajnaa/ — also https://is.gd/happytiharprajna
 
 ## Timing
 Tihar / Diwali 2026 was Nov 8 — sending Nov 9–10 still lands inside the festival week.

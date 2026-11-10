@@ -95,7 +95,7 @@
   <div class="orb"></div>
   <div class="line"></div>
   <p>A gift&nbsp; for you</p>
-  <small>tap anywhere to begin • sound on 🔊<br>Malshree Dhun playing softly in the background 🎶</small>
+  <small>tap anywhere to begin • sound on 🔊<br>Deusi Bhailo playing softly in the background 🎶</small>
 </div>
 <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
 
@@ -172,7 +172,7 @@
   <p class="footer">Made with light, and a little bit of courage ✨<br>For Prajna 🇳🇵</p>
 </section>
 
-<audio id="malshreeAudio" playsinline src="https://archive.org/download/JamareAushimabyWww.onlynepali.net/Dashain%20Dhun%20-%20www.onlynepali.net.mp3" preload="auto" loop></audio>
+<audio id="tiharAudio" playsinline src="https://archive.org/download/DeusiBhailoInstrumental_201710/DeusiBhailo-Instrumental.mp3" preload="auto" loop></audio>
 <script>
 // ---------- SOUND (Web Audio, no files needed) ----------
 let AC=null, soundOn=true;
@@ -184,30 +184,30 @@ const sPop=()=>{ tone(520,.12,'triangle',.3); noise(.12,.18); };
 const sBoom=()=>{ duckMusic(); tone(90,.6,'sine',.55); tone(60,.5,'sine',.4,.05); noise(.7,.45); setTimeout(()=>{ for(let i=0;i<10;i++) tone(1800+Math.random()*1200,.1,'sine',.1,Math.random()*.35); },120); };
 const sWhoosh=()=>{ noise(.35,.1); tone(300,.3,'sine',.06); };
 
-// ---------- MALSHREE DHUN (real song, soft in the background, NO ads) ----------
-// The music was on YouTube before — that's where the ads came from.
+// ---------- TIHAR SONG: DEUSI BHAILO (real song, soft in the background, NO ads) ----------
+// The music was a Dashain song on YouTube before — that's where the ads came from.
 // Now it's a plain MP3 file, streamed straight from Archive.org:
-// "Mangal Malshree Dhun" (Dashain Dhun), free / royalty-free, 8 minutes, no ads.
+// "Deusi Bhailo Instrumental" — the Tihar song, flute / guitar / madal, 4:14, free on Archive.org, no ads.
 // It plays quietly through the whole page, starting on her first tap.
 // This recording starts playing straight away — no silent intro to skip.
-const malAudio=document.getElementById('malshreeAudio');
-const MAL_VOL=0.12, MAL_DUCK=0.02;
-if(malAudio) malAudio.volume=MAL_VOL;
+const tiharAudio=document.getElementById('tiharAudio');
+const TIHAR_VOL=0.12, TIHAR_DUCK=0.02;
+if(tiharAudio) tiharAudio.volume=TIHAR_VOL;
 let duckTimer=null;
 function duckMusic(){
-  if(!malAudio) return;
-  malAudio.volume=MAL_DUCK;
+  if(!tiharAudio) return;
+  tiharAudio.volume=TIHAR_DUCK;
   clearTimeout(duckTimer);
-  duckTimer=setTimeout(()=>{ if(soundOn) malAudio.volume=MAL_VOL; },1200);
+  duckTimer=setTimeout(()=>{ if(soundOn) tiharAudio.volume=TIHAR_VOL; },1200);
 }
-function startMalshree(){
-  try{ if(!malAudio.paused) return; malAudio.volume=MAL_VOL; malAudio.play().catch(()=>{}); }catch(e){}
+function startTihar(){
+  try{ if(!tiharAudio.paused) return; tiharAudio.volume=TIHAR_VOL; tiharAudio.play().catch(()=>{}); }catch(e){}
 }
-function stopMalshree(){ try{ if(malAudio) malAudio.pause(); }catch(e){} }
+function stopTihar(){ try{ if(tiharAudio) tiharAudio.pause(); }catch(e){} }
 // iPhone / Safari: audio only starts from a real tap. The intro auto-closes
 // after ~3s with no tap, so start the music on the first tap anywhere.
-document.addEventListener('pointerdown',()=>{ if(soundOn){ ac(); startMalshree(); } });
-document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); startMalshree(); } else { stopMalshree(); } };
+document.addEventListener('pointerdown',()=>{ if(soundOn){ ac(); startTihar(); } });
+document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); startTihar(); } else { stopTihar(); } };
 
 // ---------- SCENES ----------
 const scenes=[...document.querySelectorAll('.scene')], dots=[...document.querySelectorAll('#dots i')];
@@ -215,7 +215,7 @@ let cur=0;
 function show(n){ scenes[cur].classList.remove('active'); dots[cur].classList.remove('on'); cur=n; scenes[cur].classList.add('active'); dots[cur].classList.add('on'); window.scrollTo(0,0); if(cur===2){ for(let i=0;i<3;i++) setTimeout(()=>burst(Math.random()*innerWidth,Math.random()*innerHeight*.4,true),i*350); spawnLanterns(); } if(cur===4){ sChime(); setTimeout(()=>burst(innerWidth/2,innerHeight*.3,true),300); spawnLanterns(); startParticleText(); } }
 // ---------- INTRO ----------
 let introDone=false;
-function closeIntro(){ if(introDone) return; introDone=true; document.getElementById('intro').classList.add('hide'); ac(); sChime(); startMalshree(); }
+function closeIntro(){ if(introDone) return; introDone=true; document.getElementById('intro').classList.add('hide'); ac(); sChime(); startTihar(); }
 document.getElementById('intro').addEventListener('click',closeIntro);
 setTimeout(closeIntro,3200);
 // ---------- LANTERNS ----------
