@@ -187,11 +187,11 @@ const sWhoosh=()=>{ noise(.35,.1); tone(300,.3,'sine',.06); };
 // The real Malshree Dhun recording — "1 Hour Nonstop Dashain Dhun | Malshree Dhun 2026"
 // (traditional Nepali instrumental, YouTube) — NOT a piano / synth version.
 // It plays quietly through the whole page, starting on her first tap.
-// The first 30-40s of the recording are silent, so it starts at 0:35 instead.
+// The first 30-40s of the recording are silent, so it starts at 0:50 instead.
 let ytPlayer=null, ytReady=false, ytPlayQueued=false;
 function onYouTubeIframeAPIReady(){
   try{
-    ytPlayer=new YT.Player('malshreePlayer',{events:{onReady:e=>{ ytReady=true; e.target.setVolume(4); e.target.seekTo(35,true); if(ytPlayQueued){ ytPlayQueued=false; e.target.playVideo(); } }}});
+    ytPlayer=new YT.Player('malshreePlayer',{events:{onReady:e=>{ ytReady=true; e.target.setVolume(4); e.target.seekTo(50,true); if(ytPlayQueued){ ytPlayQueued=false; e.target.playVideo(); } }}});
   }catch(e){}
 }
 let duckTimer=null;
@@ -202,7 +202,7 @@ function duckMusic(){
 }
 function startMalshree(){
   if(!ytReady){ ytPlayQueued=true; return; }
-  try{ ytPlayer.setVolume(4); ytPlayer.seekTo(35,true); ytPlayer.playVideo(); }catch(e){}
+  try{ ytPlayer.setVolume(4); ytPlayer.seekTo(50,true); ytPlayer.playVideo(); }catch(e){}
 }
 function stopMalshree(){ try{ if(ytPlayer) ytPlayer.pauseVideo(); }catch(e){} }
 document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); startMalshree(); } else { stopMalshree(); } };
@@ -273,7 +273,7 @@ function showPhoto(){ img.src=photos[pi].src; cap.innerHTML=photos[pi].cap+'<sma
 document.getElementById('nextPhoto').onclick=()=>{ pi=(pi+1)%photos.length; showPhoto(); };
 document.getElementById('prevPhoto').onclick=()=>{ pi=(pi-1+photos.length)%photos.length; showPhoto(); };
 </script>
-<iframe id="malshreePlayer" width="1" height="1" style="position:fixed;left:-20px;top:-20px;opacity:0;pointer-events:none" src="https://www.youtube.com/embed/iVuOVrnyOvU?enablejsapi=1&rel=0&start=35" frameborder="0" allow="autoplay"></iframe>
+<iframe id="malshreePlayer" width="1" height="1" style="position:fixed;left:-20px;top:-20px;opacity:0;pointer-events:none" src="https://www.youtube.com/embed/iVuOVrnyOvU?enablejsapi=1&rel=0&start=50" frameborder="0" allow="autoplay"></iframe>
 <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
