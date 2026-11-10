@@ -183,28 +183,25 @@ const sPop=()=>{ tone(520,.12,'triangle',.3); noise(.12,.18); };
 const sBoom=()=>{ duckMusic(); tone(90,.6,'sine',.55); tone(60,.5,'sine',.4,.05); noise(.7,.45); setTimeout(()=>{ for(let i=0;i<10;i++) tone(1800+Math.random()*1200,.1,'sine',.1,Math.random()*.35); },120); };
 const sWhoosh=()=>{ noise(.35,.1); tone(300,.3,'sine',.06); };
 
-// ---------- MALSHREE DHUN (real song, soft in the background) ----------
-// The real Malshree Dhun recording — "1 Hour Nonstop Dashain Dhun | Malshree Dhun 2026"
-// (traditional Nepali instrumental, YouTube) — NOT a piano / synth version.
+// ---------- MALSHREE DHUN (real song, soft in the background, NO ads) ----------
+// The music was on YouTube before — that's where the ads came from.
+// Now it's a plain MP3 file, streamed straight from Archive.org:
+// "Mangal Malshree Dhun" (Dashain Dhun), free / royalty-free, 8 minutes, no ads.
 // It plays quietly through the whole page, starting on her first tap.
-// The first 30-40s of the recording are silent, so it starts at 0:50 instead.
-let ytPlayer=null, ytReady=false, ytPlayQueued=false;
-function onYouTubeIframeAPIReady(){
-  try{
-    ytPlayer=new YT.Player('malshreePlayer',{events:{onReady:e=>{ ytReady=true; e.target.setVolume(4); e.target.seekTo(50,true); if(ytPlayQueued){ ytPlayQueued=false; e.target.playVideo(); } }}});
-  }catch(e){}
-}
+// This recording starts playing straight away — no silent intro to skip.
+const malAudio=document.getElementById('malshreeAudio');
+const MAL_VOL=0.12, MAL_DUCK=0.02;
+malAudio.volume=MAL_VOL;
 let duckTimer=null;
 function duckMusic(){
-  try{ if(ytPlayer && ytReady) ytPlayer.setVolume(1); }catch(e){}
+  malAudio.volume=MAL_DUCK;
   clearTimeout(duckTimer);
-  duckTimer=setTimeout(()=>{ try{ if(ytPlayer && ytReady && soundOn) ytPlayer.setVolume(4); }catch(e){} },1200);
+  duckTimer=setTimeout(()=>{ if(soundOn) malAudio.volume=MAL_VOL; },1200);
 }
 function startMalshree(){
-  if(!ytReady){ ytPlayQueued=true; return; }
-  try{ ytPlayer.setVolume(4); ytPlayer.seekTo(50,true); ytPlayer.playVideo(); }catch(e){}
+  try{ malAudio.currentTime=0; malAudio.volume=MAL_VOL; malAudio.play().catch(()=>{}); }catch(e){}
 }
-function stopMalshree(){ try{ if(ytPlayer) ytPlayer.pauseVideo(); }catch(e){} }
+function stopMalshree(){ try{ malAudio.pause(); }catch(e){} }
 document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); startMalshree(); } else { stopMalshree(); } };
 
 // ---------- SCENES ----------
@@ -273,7 +270,6 @@ function showPhoto(){ img.src=photos[pi].src; cap.innerHTML=photos[pi].cap+'<sma
 document.getElementById('nextPhoto').onclick=()=>{ pi=(pi+1)%photos.length; showPhoto(); };
 document.getElementById('prevPhoto').onclick=()=>{ pi=(pi-1+photos.length)%photos.length; showPhoto(); };
 </script>
-<iframe id="malshreePlayer" width="1" height="1" style="position:fixed;left:-20px;top:-20px;opacity:0;pointer-events:none" src="https://www.youtube.com/embed/iVuOVrnyOvU?enablejsapi=1&rel=0&start=50" frameborder="0" allow="autoplay"></iframe>
-<script src="https://www.youtube.com/iframe_api"></script>
+<audio id="malshreeAudio" src="https://archive.org/download/JamareAushimabyWww.onlynepali.net/Dashain%20Dhun%20-%20www.onlynepali.net.mp3" preload="auto" loop></audio>
 </body>
 </html>
