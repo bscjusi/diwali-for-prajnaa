@@ -199,9 +199,12 @@ function duckMusic(){
   duckTimer=setTimeout(()=>{ if(soundOn) malAudio.volume=MAL_VOL; },1200);
 }
 function startMalshree(){
-  try{ malAudio.currentTime=0; malAudio.volume=MAL_VOL; malAudio.play().catch(()=>{}); }catch(e){}
+  try{ if(!malAudio.paused) return; malAudio.volume=MAL_VOL; malAudio.play().catch(()=>{}); }catch(e){}
 }
 function stopMalshree(){ try{ malAudio.pause(); }catch(e){} }
+// iPhone / Safari: audio only starts from a real tap. The intro auto-closes
+// after ~3s with no tap, so start the music on the first tap anywhere.
+document.addEventListener('pointerdown',()=>{ if(soundOn){ ac(); startMalshree(); } });
 document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); startMalshree(); } else { stopMalshree(); } };
 
 // ---------- SCENES ----------
@@ -270,6 +273,6 @@ function showPhoto(){ img.src=photos[pi].src; cap.innerHTML=photos[pi].cap+'<sma
 document.getElementById('nextPhoto').onclick=()=>{ pi=(pi+1)%photos.length; showPhoto(); };
 document.getElementById('prevPhoto').onclick=()=>{ pi=(pi-1+photos.length)%photos.length; showPhoto(); };
 </script>
-<audio id="malshreeAudio" src="https://archive.org/download/JamareAushimabyWww.onlynepali.net/Dashain%20Dhun%20-%20www.onlynepali.net.mp3" preload="auto" loop></audio>
+<audio id="malshreeAudio" playsinline src="https://archive.org/download/JamareAushimabyWww.onlynepali.net/Dashain%20Dhun%20-%20www.onlynepali.net.mp3" preload="auto" loop></audio>
 </body>
 </html>
