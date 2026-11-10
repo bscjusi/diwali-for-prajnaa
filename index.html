@@ -172,6 +172,7 @@
   <p class="footer">Made with light, and a little bit of courage ✨<br>For Prajna 🇳🇵</p>
 </section>
 
+<audio id="malshreeAudio" playsinline src="https://archive.org/download/JamareAushimabyWww.onlynepali.net/Dashain%20Dhun%20-%20www.onlynepali.net.mp3" preload="auto" loop></audio>
 <script>
 // ---------- SOUND (Web Audio, no files needed) ----------
 let AC=null, soundOn=true;
@@ -191,9 +192,10 @@ const sWhoosh=()=>{ noise(.35,.1); tone(300,.3,'sine',.06); };
 // This recording starts playing straight away — no silent intro to skip.
 const malAudio=document.getElementById('malshreeAudio');
 const MAL_VOL=0.12, MAL_DUCK=0.02;
-malAudio.volume=MAL_VOL;
+if(malAudio) malAudio.volume=MAL_VOL;
 let duckTimer=null;
 function duckMusic(){
+  if(!malAudio) return;
   malAudio.volume=MAL_DUCK;
   clearTimeout(duckTimer);
   duckTimer=setTimeout(()=>{ if(soundOn) malAudio.volume=MAL_VOL; },1200);
@@ -201,7 +203,7 @@ function duckMusic(){
 function startMalshree(){
   try{ if(!malAudio.paused) return; malAudio.volume=MAL_VOL; malAudio.play().catch(()=>{}); }catch(e){}
 }
-function stopMalshree(){ try{ malAudio.pause(); }catch(e){} }
+function stopMalshree(){ try{ if(malAudio) malAudio.pause(); }catch(e){} }
 // iPhone / Safari: audio only starts from a real tap. The intro auto-closes
 // after ~3s with no tap, so start the music on the first tap anywhere.
 document.addEventListener('pointerdown',()=>{ if(soundOn){ ac(); startMalshree(); } });
@@ -219,6 +221,7 @@ setTimeout(closeIntro,3200);
 // ---------- LANTERNS ----------
 function spawnLanterns(){ for(let i=0;i<7;i++){ const l=document.createElement('div'); l.className='lantern'; l.textContent=Math.random()>.5?'🏮':'🪔'; l.style.left=(5+Math.random()*88)+'vw'; l.style.animationDuration=(9+Math.random()*8)+'s'; l.style.animationDelay=(Math.random()*4)+'s'; l.style.fontSize=(22+Math.random()*18)+'px'; document.body.appendChild(l); setTimeout(()=>l.remove(),22000); } }
 document.getElementById('env').onclick=()=>{ ac(); sChime(); sWhoosh(); show(1); };
+document.getElementById('s1').addEventListener('click',e=>{ if(e.target.closest('#soundBtn')) return; if(cur===0){ ac(); sChime(); sWhoosh(); show(1); } });
 document.getElementById('to3').onclick=()=>{ sWhoosh(); show(2); };
 document.getElementById('to4').onclick=()=>{ sWhoosh(); show(3); };
 document.getElementById('to5').onclick=()=>{ sChime(); show(4); };
@@ -273,6 +276,5 @@ function showPhoto(){ img.src=photos[pi].src; cap.innerHTML=photos[pi].cap+'<sma
 document.getElementById('nextPhoto').onclick=()=>{ pi=(pi+1)%photos.length; showPhoto(); };
 document.getElementById('prevPhoto').onclick=()=>{ pi=(pi-1+photos.length)%photos.length; showPhoto(); };
 </script>
-<audio id="malshreeAudio" playsinline src="https://archive.org/download/JamareAushimabyWww.onlynepali.net/Dashain%20Dhun%20-%20www.onlynepali.net.mp3" preload="auto" loop></audio>
 </body>
 </html>
