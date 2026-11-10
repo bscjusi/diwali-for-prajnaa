@@ -3,11 +3,14 @@
 Upload the WHOLE folder — `index.html` + `images/` — no build step, no external files needed.
 Sound is made in the browser (Web Audio), so it works on GitHub Pages with no audio files.
 
+## Changes in v5 (2026-11-09, Sushil's feedback)
+- Malshree Dhun is now the real song recording from YouTube, not the synthesized piano-like version.
+
 ## Changes in v4 (2026-11-09, Sushil's feedback)
 - Says **Happy Tihar**, not Happy Diwali — in Nepal we say Tihar. Name is **Prajna** (no Devanagari, no "Prajnaa").
 - No Instagram links anywhere, and no Instagram handle.
 - Only **two photos**: Dashain and the close-up smile.
-- **Malshree Dhun** plays softly in the background throughout, starting on the first tap — a gentle flute-like version of the traditional melody, built with Web Audio (no audio file).
+- **Malshree Dhun** plays softly in the background throughout, starting on the first tap — the real song recording ("1 Hour Nonstop Dashain Dhun | Malshree Dhun 2026", traditional Nepali instrumental on YouTube, played quietly at volume 12), NOT a piano/synth version. The sound toggle pauses/resumes it.
 
 ## The journey — one screen leads to the next, like the original link
 1. **Envelope** — "For Prajna" — tap 💌 to open, with a chime

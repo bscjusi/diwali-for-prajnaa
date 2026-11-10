@@ -184,41 +184,22 @@ const sPop=()=>{ tone(520,.12,'triangle',.2); noise(.12,.12); };
 const sBoom=()=>{ tone(90,.5,'sine',.3); noise(.55,.28); setTimeout(()=>{ for(let i=0;i<6;i++) tone(1800+Math.random()*1200,.08,'sine',.05,Math.random()*.3); },120); };
 const sWhoosh=()=>{ noise(.35,.1); tone(300,.3,'sine',.06); };
 
-// ---------- MALSHREE DHUN (soft background, all through the page) ----------
-// Traditional Tihar / Dashain melody, played softly on a flute-like tone.
-// Notes from the classic Malshree Dhun notation (scale C, Sthayi 1 & 2).
-// Sa=C4, Re=D4, Ga=E♭4, Ma=F4, Pa=G4, Dha=A4, Ni♭=B♭4, Sa'=C5, Ni.=B♭3
-const MALSHREE=[
- [392,.6],[392,.6],[523.25,.6],[523.25,.6],[466.16,.6],[440,.6],[392,.6],[349.23,.6],[392,.3],[440,.3],[392,.3],[349.23,.3],[349.23,.6],[311.13,.6],[293.66,.6],[261.63,.9],
- [233.08,.6],[233.08,.6],[233.08,.6],[261.63,.6],[261.63,.6],[293.66,.6],[349.23,.6],[293.66,.3],[349.23,.3],[392,.3],[440,.3],[392,.6],[349.23,.6],[311.13,.6],[293.66,.6],[261.63,1.2]
-];
-let musicStarted=false, musicIdx=0;
-function malNote(f,d){
-  if(!soundOn) return;
+// ---------- MALSHREE DHUN (real song, soft in the background) ----------
+// The real Malshree Dhun recording — "1 Hour Nonstop Dashain Dhun | Malshree Dhun 2026"
+// (traditional Nepali instrumental, YouTube) — NOT a piano / synth version.
+// It plays quietly through the whole page, starting on her first tap.
+let ytPlayer=null, ytReady=false, ytPlayQueued=false;
+function onYouTubeIframeAPIReady(){
   try{
-    const a=ac(), o=a.createOscillator(), g=a.createGain(), o2=a.createOscillator(), g2=a.createGain();
-    o.type='triangle'; o.frequency.value=f;
-    o2.type='sine'; o2.frequency.value=f*2; // soft overtone, flute-like
-    const t=a.currentTime;
-    g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(0.045,t+0.08); g.gain.setValueAtTime(0.045,t+d-0.12); g.gain.exponentialRampToValueAtTime(0.001,t+d);
-    g2.gain.setValueAtTime(0.0001,t); g2.gain.linearRampToValueAtTime(0.015,t+0.08); g2.gain.exponentialRampToValueAtTime(0.001,t+d);
-    o.connect(g).connect(a.destination); o2.connect(g2).connect(a.destination);
-    o.start(t); o.stop(t+d); o2.start(t); o2.stop(t+d);
+    ytPlayer=new YT.Player('malshreePlayer',{events:{onReady:e=>{ ytReady=true; e.target.setVolume(12); if(ytPlayQueued){ ytPlayQueued=false; e.target.playVideo(); } }}});
   }catch(e){}
 }
-function malshreeStep(){
-  if(!musicStarted) return;
-  const [f,d]=MALSHREE[musicIdx % MALSHREE.length];
-  musicIdx++;
-  malNote(f,d);
-  setTimeout(malshreeStep, d*1000 + 60);
-}
 function startMalshree(){
-  if(musicStarted) return;
-  musicStarted=true; musicIdx=0;
-  ac(); malshreeStep();
+  if(!ytReady){ ytPlayQueued=true; return; }
+  try{ ytPlayer.setVolume(12); ytPlayer.playVideo(); }catch(e){}
 }
-document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); if(!musicStarted) startMalshree(); } };
+function stopMalshree(){ try{ if(ytPlayer) ytPlayer.pauseVideo(); }catch(e){} }
+document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); startMalshree(); } else { stopMalshree(); } };
 
 // ---------- SCENES ----------
 const scenes=[...document.querySelectorAll('.scene')], dots=[...document.querySelectorAll('#dots i')];
@@ -286,5 +267,7 @@ function showPhoto(){ img.src=photos[pi].src; cap.innerHTML=photos[pi].cap+'<sma
 document.getElementById('nextPhoto').onclick=()=>{ pi=(pi+1)%photos.length; showPhoto(); };
 document.getElementById('prevPhoto').onclick=()=>{ pi=(pi-1+photos.length)%photos.length; showPhoto(); };
 </script>
+<iframe id="malshreePlayer" width="1" height="1" style="position:fixed;left:-20px;top:-20px;opacity:0;pointer-events:none" src="https://www.youtube.com/embed/iVuOVrnyOvU?enablejsapi=1&rel=0" frameborder="0" allow="autoplay"></iframe>
+<script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
