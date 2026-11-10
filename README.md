@@ -1,43 +1,30 @@
-# Diwali gift page for Prajnaa — from Sushil — v2, multi-step
+# Tihar gift page for Prajna — from Sushil — v4
 
 Upload the WHOLE folder — `index.html` + `images/` — no build step, no external files needed.
 Sound is made in the browser (Web Audio), so it works on GitHub Pages with no audio files.
 
-## Who it's for
-Prajna
+## Changes in v4 (2026-11-09, Sushil's feedback)
+- Says **Happy Tihar**, not Happy Diwali — in Nepal we say Tihar. Name is **Prajna** (no Devanagari, no "Prajnaa").
+- No Instagram links anywhere, and no Instagram handle.
+- Only **two photos**: Dashain and the close-up smile.
+- **Malshree Dhun** plays softly in the background throughout, starting on the first tap — a gentle flute-like version of the traditional melody, built with Web Audio (no audio file).
+
 ## The journey — one screen leads to the next, like the original link
-1. **Envelope** — "For Prajnaa" — tap 💌 to open, with a chime
-2. **Lights** — tap each diya to light it (Joy / Peace / Love / Luck / Hope), with pop sounds. Light all 5 and the string lights turn on, then Next unlocks
+1. **Envelope** — "For Prajna" — tap 💌 to open, with a chime
+2. **Lights** — tap each diya to light it (Joy / Peace / Love / Luck / Hope), with pop sounds. Light all 5 and the string lights turn on, the rangoli is revealed, then Next unlocks
 3. **Fireworks** — tap the sky for fireworks, with boom + crackle sounds. Big launch button too
-4. **Her moments** — a photo slideshow of her own Instagram photos, with a link back to each post:
-   - Dashain, her close-up, Phewa Taal Pokhara, Texas summer, San Antonio
-   - Photos are in `images/` — they are her public Instagram photos, used only in this gift for her
-5. **Gift card** — "Happy Diwali, Prajnaa" message, signed — Sushil, with a replay button
+4. **Her moments** — a photo slideshow of just two photos: Dashain, and her close-up smile
+5. **Gift card** — "Happy Tihar, Prajna" message, signed — Sushil, with a replay button. Particle text "Happy Tihar / from Sushil" forms in sparkling dots.
 
-Sound toggle top-right. Mobile-friendly — she'll most likely open it on her phone. Tap anywhere on the final screen for a last firework.
-
-## To personalize before sending
-Edit `index.html` — the message is in Scene 5, in the `<div class="card">`.
-Keep it in your own words; what's there now is warm and light, not a heavy confession.
+Sound toggle top-right (also turns the Malshree Dhun on/off). Mobile-friendly — she'll most likely open it on her phone.
 
 ## To host on GitHub Pages (free, ~2 minutes)
 1. GitHub → New repository, e.g. `diwali-for-prajnaa` (Public)
-2. Upload the WHOLE folder: `index.html` AND the `images/` folder with all 5 photos (Add file → Upload files → Commit — drag the folder in)
+2. Upload the WHOLE folder: `index.html` AND the `images/` folder
 3. Settings → Pages → Source: Deploy from a branch → Branch: `main`, folder `/ (root)` → Save
 4. Wait ~1 minute. Your link will be `https://<your-github-username>.github.io/diwali-for-prajnaa/`
-5. Send her that link — e.g. "Made you something for Diwali 🪔 turn your sound on" + the link
 
-Important: if you upload only index.html, the photos won't show. Upload images/ too.
+Note: the GitHub link shows your username in the URL. For a link that doesn't, host the same folder on Netlify or Vercel instead — e.g. `happy-tihar-prajna.netlify.app` — or use a custom domain.
 
 ## Timing
-Diwali 2026 was Nov 8 — sending Nov 9–10 still lands inside the festival week.
-Don't sit on it past then; the moment fades fast.
-
-## v3 — cinematic, like the original
-- Dark intro: glowing orb + "Sushil Presents" — tap to begin, auto-continues after ~3s
-- Rangoli reveal: lighting all 5 diyas reveals a colourful rangoli
-- Lanterns: paper lanterns rise in the fireworks and finale scenes
-- Particle text finale: "Happy Diwali / from Sushil" forms in sparkling dots, like the original
-
-## GitHub version
-This repo copy is self-contained: the 5 photos are embedded in index.html as base64, so GitHub Pages serves the page from index.html alone. No images/ folder is needed in the repo.
+Tihar / Diwali 2026 was Nov 8 — sending Nov 9–10 still lands inside the festival week.
