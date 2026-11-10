@@ -4,9 +4,7 @@ Upload the WHOLE folder — `index.html` + `images/` — no build step, no exter
 Sound is made in the browser (Web Audio), so it works on GitHub Pages with no audio files.
 
 ## Who it's for
-Prajnaa — @prajnaa.mee on Instagram, 🇳🇵 प्रज्ञा
-Khuma Bhattarai was only the sender in the example link Sushil shared — NOT the girl.
-
+Prajna
 ## The journey — one screen leads to the next, like the original link
 1. **Envelope** — "For Prajnaa" — tap 💌 to open, with a chime
 2. **Lights** — tap each diya to light it (Joy / Peace / Love / Luck / Hope), with pop sounds. Light all 5 and the string lights turn on, then Next unlocks
