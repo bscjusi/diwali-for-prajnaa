@@ -179,8 +179,8 @@ function ac(){ if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)()
 function tone(f,d=0.25,type='sine',v=0.18,when=0){ if(!soundOn) return; try{ const a=ac(),o=a.createOscillator(),g=a.createGain(); o.type=type; o.frequency.value=f; g.gain.setValueAtTime(v,a.currentTime+when); g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+when+d); o.connect(g).connect(a.destination); o.start(a.currentTime+when); o.stop(a.currentTime+when+d);}catch(e){} }
 function noise(d=0.4,v=0.22){ if(!soundOn) return; try{ const a=ac(),len=a.sampleRate*d,buf=a.createBuffer(1,len,a.sampleRate),ch=buf.getChannelData(0); for(let i=0;i<len;i++) ch[i]=(Math.random()*2-1)*(1-i/len); const s=a.createBufferSource(),g=a.createGain(),f=a.createBiquadFilter(); f.type='lowpass'; f.frequency.value=900; g.gain.value=v; s.buffer=buf; s.connect(f).connect(g).connect(a.destination); s.start(); }catch(e){} }
 const sChime=()=>{ tone(880,.3,'sine',.15); tone(1318,.4,'sine',.12,.09); };
-const sPop=()=>{ tone(520,.12,'triangle',.2); noise(.12,.12); };
-const sBoom=()=>{ tone(90,.5,'sine',.3); noise(.55,.28); setTimeout(()=>{ for(let i=0;i<6;i++) tone(1800+Math.random()*1200,.08,'sine',.05,Math.random()*.3); },120); };
+const sPop=()=>{ tone(520,.12,'triangle',.3); noise(.12,.18); };
+const sBoom=()=>{ duckMusic(); tone(90,.6,'sine',.55); tone(60,.5,'sine',.4,.05); noise(.7,.45); setTimeout(()=>{ for(let i=0;i<10;i++) tone(1800+Math.random()*1200,.1,'sine',.1,Math.random()*.35); },120); };
 const sWhoosh=()=>{ noise(.35,.1); tone(300,.3,'sine',.06); };
 
 // ---------- MALSHREE DHUN (real song, soft in the background) ----------
@@ -191,12 +191,18 @@ const sWhoosh=()=>{ noise(.35,.1); tone(300,.3,'sine',.06); };
 let ytPlayer=null, ytReady=false, ytPlayQueued=false;
 function onYouTubeIframeAPIReady(){
   try{
-    ytPlayer=new YT.Player('malshreePlayer',{events:{onReady:e=>{ ytReady=true; e.target.setVolume(12); e.target.seekTo(35,true); if(ytPlayQueued){ ytPlayQueued=false; e.target.playVideo(); } }}});
+    ytPlayer=new YT.Player('malshreePlayer',{events:{onReady:e=>{ ytReady=true; e.target.setVolume(4); e.target.seekTo(35,true); if(ytPlayQueued){ ytPlayQueued=false; e.target.playVideo(); } }}});
   }catch(e){}
+}
+let duckTimer=null;
+function duckMusic(){
+  try{ if(ytPlayer && ytReady) ytPlayer.setVolume(1); }catch(e){}
+  clearTimeout(duckTimer);
+  duckTimer=setTimeout(()=>{ try{ if(ytPlayer && ytReady && soundOn) ytPlayer.setVolume(4); }catch(e){} },1200);
 }
 function startMalshree(){
   if(!ytReady){ ytPlayQueued=true; return; }
-  try{ ytPlayer.setVolume(12); ytPlayer.seekTo(35,true); ytPlayer.playVideo(); }catch(e){}
+  try{ ytPlayer.setVolume(4); ytPlayer.seekTo(35,true); ytPlayer.playVideo(); }catch(e){}
 }
 function stopMalshree(){ try{ if(ytPlayer) ytPlayer.pauseVideo(); }catch(e){} }
 document.getElementById('soundBtn').onclick=e=>{ soundOn=!soundOn; e.target.textContent=soundOn?'🔊 Sound on':'🔇 Sound off'; if(soundOn){ ac(); sChime(); startMalshree(); } else { stopMalshree(); } };
