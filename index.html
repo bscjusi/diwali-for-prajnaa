@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Sushil sent you a Tihar gift 🪔</title>
+<title>A Tihar gift for you 🪔</title>
 <!--
   HOW TO PERSONALIZE — edit only this block:
   - Names are in Scene 1 and Scene 5.
   - The message is in Scene 5, in the .card div.
   - Photos are in images/ — replace any .jpg with your own, keep the same filename.
-  Self-contained version for GitHub Pages — photos are embedded in this file, so only index.html is needed.
+  Upload the WHOLE folder (index.html + images/) to GitHub Pages.
 -->
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -94,7 +94,7 @@
 <div class="intro" id="intro" role="button" aria-label="Tap to begin">
   <div class="orb"></div>
   <div class="line"></div>
-  <p>Sushil&nbsp; Presents</p>
+  <p>A gift&nbsp; for you</p>
   <small>tap anywhere to begin • sound on 🔊<br>Malshree Dhun playing softly in the background 🎶</small>
 </div>
 <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
@@ -106,7 +106,7 @@
   <p>someone made you something.<br>Tap to open it.</p>
   <div class="env" id="env" role="button" aria-label="Open your gift">💌</div>
   <p class="hint">Tap the envelope — turn your sound on 🔊</p>
-  <p class="footer">From Sushil • with a little courage ✨</p>
+  <p class="footer">With a little courage ✨</p>
 </section>
 
 <!-- SCENE 2 : LIGHTS -->
@@ -159,7 +159,7 @@
 <!-- SCENE 5 : GIFT -->
 <section class="scene" id="s5">
   <div class="eyebrow">✦ &nbsp;Happy Tihar&nbsp; ✦</div>
-  <canvas id="particleText" width="560" height="150" aria-label="Happy Tihar, from Sushil"></canvas>
+  <canvas id="particleText" width="560" height="150" aria-label="Happy Tihar, for Prajna"></canvas>
   <h1 style="font-size:clamp(28px,7vw,44px)">Happy Tihar,<br><span class="name">Prajna</span> 🪔</h1>
   <div class="card">
     <h2>For you ✨</h2>
@@ -167,8 +167,7 @@
     <p>May this year bring you everything those diyas stood for: joy, peace, love, luck, and hope. May your dreams grow — Villa Vista and all — and may home always feel close.</p>
     <p>I just wanted you to smile today. That's all.</p>
     <p class="ps">P.S. — Tap anywhere for one last firework. 🎆</p>
-    <p class="sign">— Sushil 🪔</p>
-  </div>
+      </div>
   <div><button class="btn ghost" id="replay">↺ Play it again</button></div>
   <p class="footer">Made with light, and a little bit of courage ✨<br>For Prajna 🇳🇵</p>
 </section>
@@ -245,7 +244,7 @@ function startParticleText(){
   const x=c.getContext('2d'), Wd=c.width, Ht=c.height;
   const off=document.createElement('canvas'); off.width=Wd; off.height=Ht; const ox=off.getContext('2d');
   ox.fillStyle='#fff'; ox.textAlign='center'; ox.font='bold 52px Georgia, serif'; ox.fillText('Happy Tihar',Wd/2,62);
-  ox.font='italic 26px Georgia, serif'; ox.fillText('from Sushil',Wd/2,112);
+  ox.font='italic 26px Georgia, serif'; ox.fillText('for Prajna',Wd/2,112);
   const data=ox.getImageData(0,0,Wd,Ht).data, pts=[];
   for(let yy=0;yy<Ht;yy+=5) for(let xx=0;xx<Wd;xx+=5) if(data[(yy*Wd+xx)*4+3]>128) pts.push({x:xx+(Math.random()*2-1),y:yy+(Math.random()*2-1),r:Math.random()*1.6+.7,tw:Math.random()*Math.PI*2});
   let frame=0;
